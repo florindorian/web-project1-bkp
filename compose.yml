@@ -1,0 +1,54 @@
+networks:
+  WEB-NET:
+    driver: bridge
+
+services:
+  web-php:
+    container_name: web-php
+    build:
+      context: .
+      dockerfile: ./build/php.Dockerfile
+    image: web-image-php:8.3
+    ports:
+      - 30080:80
+      - 30443:443
+      - 30000:30000 # porta reservada para subir o servidor embutido do PHP, caso necessário
+    networks:
+      - WEB-NET
+    volumes:
+      - ./:/var/www/html
+
+  web-mysql:
+    container_name: web-mysql
+    image: mysql:8.0
+    ports:
+      - 33306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: erpl
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - WEB-NET
+    volumes:
+      - ./.data/db_vol/:/var/lib/mysql
+
+  web-mysql-workbench:
+    image: linuxserver/mysql-workbench:8.0.38
+    container_name: web-mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    ports:
+      - 33000:3000
+      - 33001:3001
+    cap_add:
+      - IPC_LOCK
+    networks:
+      - WEB-NET
+    volumes:
+      - ./.data/workbench_vol/:/config
+    restart: unless-stopped
+    depends_on:
+      - web-mysql
