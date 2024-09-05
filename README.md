@@ -49,17 +49,17 @@ A implementação do sistema segue o padrão Model-View-Controller (MVC), possui
 <h4>1) Clone o repositório do github</h4>
 
 ```bash
-# Clona apenas a branch necessária
+# Clone apenas a branch necessária:
 git clone -b 53-cadastrar-novo-usuario --single-branch https://github.com/mobdev-ufopa/erpl
 ```
 
 <h4>2) Configure o arquivo .env</h4>
 
 ```bash
-# 1. Crie um arquivo .env na raíz do projeto
+# 1. Crie um arquivo .env na raíz do projeto:
 touch .env
 
-# 2. Defina as variáveis de ambiente
+# 2. Defina as variáveis de ambiente (use como exemplo o arquivo ".env.example"):
 MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
 MYSQL_USER=YOUR_USER
 MYSQL_PASSWORD=YOUR_PASSWORD
@@ -70,7 +70,8 @@ ADMIN_PASSWORD=YOUR_ADMIN_PASSWORD
 <h4>3) Configure o Docker Compose file (opcional)</h4>
 
 ```bash
-# Apenas confira se as portas 30000, 30080, 30443, 33000, 33001 e 33306 não estão sendo usadas por algumas aplicação em sua máquina. Se estiverem sendo usadas, mude-as no arquivo compose.yml.
+# Apenas confira se as portas 30000, 30080, 30443, 33000, 33001 e 33306 não estão sendo usadas por algumas aplicação em sua máquina.
+# Se estiverem sendo usadas, mude-as no arquivo "compose.yml".
 ```
 
 <h4>4) Subir os containers</h4>
@@ -79,18 +80,28 @@ ADMIN_PASSWORD=YOUR_ADMIN_PASSWORD
 # Na raíz do projeto, rode o comando abaixo para subir os containers: web-php, web-mysql, web-workbench.
 docker compose up -d
 
-# Para parar os containers após a finalização deste passo a passo, use:
+# Para parar os containers, APÓS A FINALIZAÇÃO DESTE PASSO A PASSO E DO USO DO SISTEMA, use:
 docker compose stop
 ```
 
 <h4>5) Utilizar o container do PHP para rodar a aplicação</h4>
 
 ```bash
-# Na raíz do projeto, rode o comando abaixo para entrar no container do PHP
+# Na raíz do projeto, rode o comando abaixo para entrar no container do PHP:
 docker exec -it web-php bash
 
 # Para subir o servidor embutido do PHP e rodar a aplicação, execute:
 php -S web-php:30000 -t public/
+```
+
+<h4>6) Criar a tabela de usuários e cadastrar o usuário admin</h4>
+
+```bash
+# Abra um novo terminal na raíz do projeto, depois entre no container do PHP com o comando:
+docker exec -it web-php bash
+
+# Execute o script abaixo para criar a tabela de usuários e criar o usuário admin:
+php database/create_sisacesso_table.php
 ```
 
 ### 🖥️ Visualização
@@ -102,13 +113,27 @@ php -S web-php:30000 -t public/
 localhost:30000
 ```
 
+<div align="center"> 
+	<img alt="Tela inicial da aplicação" src="./public/assets/images/tela_login.png">
+</div>
+
+#### Limitações
+
+<ul>
+    <li><strong style="color: red;">OBS 1:</strong> As demais opções do menu só estarão habilitadas após fazer o login. A funcionalidade de "Cadastro" foi projetada para ser utilizada apenas por um usuário com privilégios de Admin. Por isso, para que outros usuários consigam entrar, o admin deve cadastrá-los previamente.</li>
+    <li><strong style="color: red;">OBS 2:</strong> Por enquanto, um usuário comum ainda não é impedido de usar a opção de cadastro. Atualizações futuras implementarão essa funcionalidade.</li>
+</ul>
+
 <h4>B) Para visualizar o MySQL Workbench:</h4>
 
 ```bash
 # Na barra de pesquisa do navegador, pesquise por:
 localhost:33000
 
-# Configure uma nova conexão e preencha conforme a imagem abaixo:
+# Configure uma nova conexão e preencha conforme a imagem abaixo.
+# OBS:
+# Username = (valor da variável ADMIN_LOGIN no .env)
+# Password = (valor da variável ADMIN_PASSWORD no .env)
 ```
 
 <div align="center"> 
@@ -116,7 +141,8 @@ localhost:33000
 </div>
 
 ```bash
-# Após testar a coneção e definir o "Connection Name", clique em "OK" e, na tela HOME, entre na conexão criada. O banco de dados padrão se chama "erpl". A tabela implementada nesta branch se chama "sis_acesso".
+# Após testar a coneção e definir o "Connection Name", clique em "OK" e, na tela HOME, entre na conexão criada. 
+# O banco de dados padrão se chama "erpl". A tabela implementada nesta branch se chama "sis_acesso".
 ```
 
 ## 📄 Licença
