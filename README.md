@@ -1,15 +1,13 @@
-<p align="center">
+<div style="display: flex; justify-content: center">
   <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="100" alt="project-logo">
-</p>
-<p align="center">
-    <h1 align="center">ERP Learning</h1>
-</p>
+</div>
+<h1 style="text-align: center;"> ERP Learning </h1>
 
 ## 📍 Visão Geral
 
 ERP Learning (ERPL) é um sistema Web projetado para otimizar os processos organizacionais do negócio em questão. O projeto faz parte dos artefatos de avaliação da disciplina de Programação Web do semestre 2024.1, tendo como objetivo a promoção do desenvolvimento colaborativo apoiado por tecnologias web.
 
-A implementação do sistema segue o padrão Model-View-Controller (MVC), possuindo códigos que interagem tanto do lado do cliente quanto do lado do servidor.
+A implementação do sistema segue o padrão Model-View-Controller (MVC), possuindo códigos que interagem tanto do lado do cliente quanto do lado do servidor. Para entender melhor a forma como esse projeto foi programado, confira o [Guia do padrão de desenvolvimento do Projeto](./docs/project-operation/README.md).
 
 
 
@@ -114,7 +112,7 @@ localhost:30000
 ```
 
 <div align="center"> 
-	<img alt="Tela inicial da aplicação" src="./public/assets/images/tela_login.png">
+	<img alt="Tela inicial da aplicação" src="docs/project-operation/tela_login.png">
 </div>
 
 #### Limitações
@@ -137,7 +135,7 @@ localhost:33000
 ```
 
 <div align="center"> 
-	<img alt="DB Connection configuration" src="./public/assets/images/connection_config.png">
+	<img alt="DB Connection configuration" src="docs/project-operation/connection_config.png">
 </div>
 
 ```bash
@@ -147,6 +145,12 @@ localhost:33000
 
 ## 📄 Licença
 
+---
+
 Este projeto está distribuído sob a **MIT License**. Para mais detalhes, consulte o arquivo [LICENSE](./LICENSE).
 
+## 🧑‍💻 Autores
+
 ---
+
+<a href="https://github.com/florindorian"><img src="https://github.com/florindorian.png" width=100></a>

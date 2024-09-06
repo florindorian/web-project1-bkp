@@ -8,4 +8,4 @@ apt install libpq-dev
 docker-php-ext-install pdo_mysql
 EOF
 
-EXPOSE 80 443 50000
+EXPOSE 80 443 30000

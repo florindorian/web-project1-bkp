@@ -8,6 +8,7 @@ $dotenv = parse_ini_file(__DIR__ . '/../.env');
 
 $connection = ConnectionCreator::createConnection();
 
+// Comando para a criação da tabela de usuários
 $sqlCreate = "
 CREATE TABLE IF NOT EXISTS erpl.sis_acesso (
 	idacesso SERIAL,
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS erpl.sis_acesso (
     func INTEGER NOT NULL
 );";
 
+// Comando para a criação do usuário admin (o primeiro usuário, responsável por cadastrar os demais)
 $sqlInsert = "
     INSERT INTO erpl.sis_acesso (login, sha, email, nivel, nome, func) VALUES 
         (:login, :sha, 'admin@admin.com', '0', 'admin', 0);

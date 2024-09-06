@@ -38,5 +38,6 @@ if (array_key_exists($key, $routes)) {
     $controller = new Error404Controller();
 }
 
+// Processa a requisição e renderiza o corpo da resposta, caso não haja um cabeçalho de redirecionamento.
 $response = $controller->processRequest();
 $response->getBody();

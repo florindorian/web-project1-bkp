@@ -20,8 +20,8 @@ class UserRegistrationController implements Controller
         $senha = filter_input(INPUT_POST, 'senha');
         $senhaConf = filter_input(INPUT_POST, 'senha_conf');
 
-        $condIdFunc = ($login == false);
-        $condLogin = ($login == false); // Verdade para: false, null, ''
+        $condIdFunc = ($login == false); // Verdade para: false, null, '' (string vazia). Análogo para as condições logo abaixo.
+        $condLogin = ($login == false);
         $condNome = ($nome == false);
         $condEmail = ($email == false);
         $condNivel = ($nivel == false);

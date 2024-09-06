@@ -9,6 +9,11 @@ class UserRegistrationFormController implements Controller
 {
     public function getResultMessage(): void
     {
+        /*
+         * Nos controllers que são chamados após a realização de uma operação do sistema (como um CRUD com o banco),
+         * este método deve ser criado e chamado.
+         */
+
         if (isset($_SESSION['resultMessage'])) {
             $message = $_SESSION['resultMessage'];
             echo "<script type='text/javascript'>
